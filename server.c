@@ -3,9 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 #include <unistd.h>
-#include <arpa/inet.h>
 #include <fcntl.h>
 
 struct server
@@ -75,7 +73,7 @@ char *res(char *text)
         fd = open(path, O_RDONLY);
     }
 
-    char html[20000];
+    char html[20000] = "";
     if (fd < 0)
     {
         fd = open("./404.html", O_RDONLY);
@@ -92,8 +90,8 @@ char *res(char *text)
 
 void lanch(struct server *server)
 {
-    char buffer[30000];
-    char http[30000];
+    char buffer[30000] = "";
+    char http[30000] = "";
     int address_length = sizeof(server->address);
     int new_socket;
     while (1)
